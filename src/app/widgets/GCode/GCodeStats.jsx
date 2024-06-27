@@ -8,12 +8,12 @@ import {
 import styles from './index.styl';
 
 const formatISODateTime = (time) => {
-  return time > 0 ? moment.unix(time / 1000).format('YYYY-MM-DD HH:mm:ss') : '–';
+  return time > 0 ? moment.unix(time / 1000).format('YYYY-MM-DD HH:mm:ss') : '&ndash;';
 };
 
 const formatElapsedTime = (elapsedTime) => {
   if (!elapsedTime || elapsedTime < 0) {
-    return '–';
+    return '&ndash;';
   }
   const d = moment.duration(elapsedTime, 'ms');
   return moment(d._data).format('HH:mm:ss');
@@ -21,7 +21,7 @@ const formatElapsedTime = (elapsedTime) => {
 
 const formatRemainingTime = (remainingTime) => {
   if (!remainingTime || remainingTime < 0) {
-    return '–';
+    return '&ndash;';
   }
   const d = moment.duration(remainingTime, 'ms');
   return moment(d._data).format('HH:mm:ss');
@@ -33,6 +33,7 @@ class GCodeStats extends PureComponent {
     };
 
     render() {
+      // Server Source: \src\server\lib\Sender.js
       const { state } = this.props;
       const { units, total, sent, received, bbox } = state;
       const displayUnits = (units === METRIC_UNITS) ? i18n._('mm') : i18n._('in');
@@ -43,6 +44,8 @@ class GCodeStats extends PureComponent {
 
       return (
         <div className={styles['gcode-stats']}>
+
+          {/* Axis Values Tables */}
           <div className="row no-gutters" style={{ marginBottom: 10 }}>
             <div className="col-xs-12">
               <table className="table-bordered" data-table="dimension">
@@ -55,18 +58,21 @@ class GCodeStats extends PureComponent {
                   </tr>
                 </thead>
                 <tbody>
+                  {/* X-Axis */}
                   <tr>
                     <td className={styles.axis}>X</td>
                     <td>{bbox.min.x} {displayUnits}</td>
                     <td>{bbox.max.x} {displayUnits}</td>
                     <td>{bbox.delta.x} {displayUnits}</td>
                   </tr>
+                  {/* Y-Axis */}
                   <tr>
                     <td className={styles.axis}>Y</td>
                     <td>{bbox.min.y} {displayUnits}</td>
                     <td>{bbox.max.y} {displayUnits}</td>
                     <td>{bbox.delta.y} {displayUnits}</td>
                   </tr>
+                  {/* Z-Axis */}
                   <tr>
                     <td className={styles.axis}>Z</td>
                     <td>{bbox.min.z} {displayUnits}</td>
@@ -77,16 +83,20 @@ class GCodeStats extends PureComponent {
               </table>
             </div>
           </div>
+
+          {/* Lines Sent & Received */}
           <div className="row no-gutters" style={{ marginBottom: 10 }}>
             <div className="col-xs-6">
               <div>{i18n._('Sent')}</div>
-              <div>{total > 0 ? `${sent} / ${total}` : '–'}</div>
+              <div>{total > 0 ? `${sent} / ${total}` : '&ndash;'}</div>
             </div>
             <div className="col-xs-6">
               <div>{i18n._('Received')}</div>
-              <div>{total > 0 ? `${received} / ${total}` : '–'}</div>
+              <div>{total > 0 ? `${received} / ${total}` : '&ndash;'}</div>
             </div>
           </div>
+
+          {/* Start Time & Elapsed Time */}
           <div className="row no-gutters" style={{ marginBottom: 10 }}>
             <div className="col-xs-6">
               <div>{i18n._('Start Time')}</div>
@@ -97,7 +107,9 @@ class GCodeStats extends PureComponent {
               <div>{elapsedTime}</div>
             </div>
           </div>
-          <div className="row no-gutters">
+
+          {/* Finish Time & Remaining Time */}
+          <div className="row no-gutters" style={{ marginBottom: 10 }}>
             <div className="col-xs-6">
               <div>{i18n._('Finish Time')}</div>
               <div>{finishTime}</div>
@@ -107,6 +119,14 @@ class GCodeStats extends PureComponent {
               <div>{remainingTime}</div>
             </div>
           </div>
+
+          {/* Progress Bar */}
+          <div className="row no-gutters">
+            <div className="col-xs-12">
+                <progress value={total > 0 ? {received} : 0} max={total > 0 ? {total} : 100} />
+            </div>
+          </div>
+
         </div>
       );
     }
