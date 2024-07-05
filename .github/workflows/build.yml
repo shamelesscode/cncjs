@@ -88,13 +88,13 @@ jobs:
         ls -al output releases/linux
         if [[ "$GITHUB_REF_TYPE" == "branch" && "$GITHUB_REF_NAME" == "master" ]]; then
           yarn github-release delete \
-            --owner=cncjs \
+            --owner=shamelesscode \
             --repo=cncjs \
             --tag="${GITHUB_REF_NAME}-latest" \
             --release-name="${GITHUB_REF_NAME}" \
             "*-linux*";
           yarn github-release upload \
-            --owner=cncjs \
+            --owner=shamelesscode \
             --repo=cncjs \
             --tag="${GITHUB_REF_NAME}-latest" \
             --release-name="${GITHUB_REF_NAME}" \
@@ -171,13 +171,13 @@ jobs:
         ls -al output releases/macos
         if [[ "$GITHUB_REF_TYPE" == "branch" && "$GITHUB_REF_NAME" == "master" ]]; then
           yarn github-release delete \
-            --owner=cncjs \
+            --owner=shamelesscode \
             --repo=cncjs \
             --tag="${GITHUB_REF_NAME}-latest" \
             --release-name="${GITHUB_REF_NAME}" \
             "*-macos*";
           yarn github-release upload \
-            --owner=cncjs \
+            --owner=shamelesscode \
             --repo=cncjs \
             --tag="${GITHUB_REF_NAME}-latest" \
             --release-name="${GITHUB_REF_NAME}" \
@@ -255,13 +255,13 @@ jobs:
         ls -al output releases/windows
         if [[ "$GITHUB_REF_TYPE" == "branch" && "$GITHUB_REF_NAME" == "master" ]]; then
           yarn github-release delete \
-            --owner=cncjs \
+            --owner=shamelesscode \
             --repo=cncjs \
             --tag="${GITHUB_REF_NAME}-latest" \
             --release-name="${GITHUB_REF_NAME}" \
             "*-windows*";
           yarn github-release upload \
-            --owner=cncjs \
+            --owner=shamelesscode \
             --repo=cncjs \
             --tag="${GITHUB_REF_NAME}-latest" \
             --release-name="${GITHUB_REF_NAME}" \
