@@ -89,13 +89,13 @@ jobs:
         if [[ "$GITHUB_REF_TYPE" == "branch" && "$GITHUB_REF_NAME" == "master" ]]; then
           yarn github-release delete \
             --owner=shamelesscode \
-            --repo=shameless-cncjs \
+            --repo=cncjs \
             --tag="${GITHUB_REF_NAME}-latest" \
             --release-name="${GITHUB_REF_NAME}" \
             "*-linux*";
           yarn github-release upload \
             --owner=shamelesscode \
-            --repo=shameless-cncjs \
+            --repo=cncjs \
             --tag="${GITHUB_REF_NAME}-latest" \
             --release-name="${GITHUB_REF_NAME}" \
             --body="${GIT_COMMIT_LOG}" \
@@ -172,13 +172,13 @@ jobs:
         if [[ "$GITHUB_REF_TYPE" == "branch" && "$GITHUB_REF_NAME" == "master" ]]; then
           yarn github-release delete \
             --owner=shamelesscode \
-            --repo=shameless-cncjs \
+            --repo=cncjs \
             --tag="${GITHUB_REF_NAME}-latest" \
             --release-name="${GITHUB_REF_NAME}" \
             "*-macos*";
           yarn github-release upload \
             --owner=shamelesscode \
-            --repo=shameless-cncjs \
+            --repo=cncjs \
             --tag="${GITHUB_REF_NAME}-latest" \
             --release-name="${GITHUB_REF_NAME}" \
             --body="${GIT_COMMIT_LOG}" \
@@ -256,13 +256,13 @@ jobs:
         if [[ "$GITHUB_REF_TYPE" == "branch" && "$GITHUB_REF_NAME" == "master" ]]; then
           yarn github-release delete \
             --owner=shamelesscode \
-            --repo=shameless-cncjs \
+            --repo=cncjs \
             --tag="${GITHUB_REF_NAME}-latest" \
             --release-name="${GITHUB_REF_NAME}" \
             "*-windows*";
           yarn github-release upload \
             --owner=shamelesscode \
-            --repo=shameless-cncjs \
+            --repo=cncjs \
             --tag="${GITHUB_REF_NAME}-latest" \
             --release-name="${GITHUB_REF_NAME}" \
             --body="${GIT_COMMIT_LOG}" \
